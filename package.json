@@ -1,0 +1,25 @@
+{
+  "name": "pixi-project",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "npm run dev",
+    "build": "npm run lint && vite build",
+    "lint": "eslint .",
+    "prettier": "prettier . --write",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@pixi/graphics-extras": "^6.0.2",
+    "howler": "^2.2.1",
+    "pixi.js": "^8.8.1"
+  },
+  "devDependencies": {
+    "@pixi/devtools": "^2.0.1",
+    "prettier": "^3.6.2",
+    "serve": "^14.2.5",
+    "vite": "^7.1.0"
+  }
+}

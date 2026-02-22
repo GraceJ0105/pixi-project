@@ -1,0 +1,47 @@
+{
+  "bundles": [
+    {
+      "name": "birds",
+      "assets": [
+        {
+          "alias": "puffin",
+          "src": "images/puffin.png"
+        },
+        {
+          "alias": "robin",
+          "src": "images/robin.png"
+        },
+        {
+          "alias": "pidgeot",
+          "src": "images/pidgeot.png"
+        },
+        {
+          "alias": "zapdos",
+          "src": "images/zapdos.png"
+        }
+      ]
+    },
+    {
+      "name": "plants",
+      "assets": [
+        {
+          "alias": "plant",
+          "src": "images/plant.png"
+        }
+      ]
+    },
+    {
+        "name": "scene",
+        "assets": [
+            {
+                "alias": "tree",
+                "src": "images/tree.png"
+            },
+            {
+                "alias": "beach",
+                "src": "images/beach.png"
+            }
+        ]
+    }
+  ]
+}
