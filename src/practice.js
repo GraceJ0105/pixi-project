@@ -120,7 +120,7 @@ import { initDevtools } from "@pixi/devtools";
 
   app.stage.addChild(treeContainer);
   app.stage.addChild(beachContainer);
-  
+
   app.renderer.on("resize", () => {
     beachContainer.position.set(app.screen.width / 2, 0);
   });
@@ -207,6 +207,85 @@ import { initDevtools } from "@pixi/devtools";
   plantSprite.scale.set(0.3);
   plantSprite.position.set(300, 250);
   beachContainer.addChild(plantSprite);
+
+    const atlasData = {
+    frames: {
+      talk1: {
+        frame: {x: 0, y:0, w:350, h:350},
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      talk2: {
+          frame: {x: 350, y:0, w:350, h:350},
+          sourceSize: {w: 350, h: 350},
+          spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      talk3: {
+        frame: {x: 700, y:0, w:350, h:350 },
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      talk4: {
+        frame: {x: 1050, y:0, w:350, h:350},
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      talk5: {
+        frame: {x: 1400, y:0, w:350, h:350},
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      walk1: {
+        frame: {x: 0, y:350, w:350, h:350},
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      walk2: {
+        frame: {x: 350, y:350, w:350, h:350},
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      walk3: {
+        frame: {x: 700, y:350, w:350, h:350 },
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      },
+      walk4: {
+        frame: {x: 1050, y:350, w:350, h:350},
+        sourceSize: {w: 350, h: 350},
+        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+      }
+    },
+    meta: {
+        image: 'https://i.imgur.com/rjR8BeV.png',
+        size: {w: 1750, h: 700}
+    },
+    animations: {
+      //array of frames by name
+        talk: ['talk1', 'talk2', 'talk3', 'talk4', 'talk5'],
+        walk: ['walk1', 'walk2', 'walk3', 'walk4']
+    }
+  }
+
+  const texture = await Assets.load(atlasData.meta.image);
+
+  const spritesheet = new Spritesheet(
+    texture,
+    atlasData
+  );
+
+  await spritesheet.parse();
+  
+  // For the walking animation set
+  // spritesheet.animations.walk
+  const animatedSprite =
+  new AnimatedSprite(spritesheet.animations.talk);
+
+  app.stage.addChild(animatedSprite);
+
+  animatedSprite.play();
+
+  animatedSprite.animationSpeed = 0.13;
 
   initDevtools({ app });
 
