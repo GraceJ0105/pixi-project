@@ -7,6 +7,7 @@
     "start": "npm run dev",
     "build": "npm run lint && vite build",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "prettier": "prettier . --write",
     "dev": "vite",
     "preview": "vite preview"
@@ -20,6 +21,7 @@
     "@pixi/devtools": "^2.0.1",
     "prettier": "^3.6.2",
     "serve": "^14.2.5",
+    "typescript": "^5.9.2",
     "vite": "^7.1.0"
   }
 }

@@ -6,6 +6,9 @@ import {
   Sprite,
   Assets,
   Container,
+  Spritesheet,
+  AnimatedSprite,
+  FederatedPointerEvent,
 } from "pixi.js";
 import { initDevtools } from "@pixi/devtools";
 
@@ -77,12 +80,12 @@ import { initDevtools } from "@pixi/devtools";
   rectangle.cursor = "pointer";
   rectangle.on("mousedown", moveRect);
 
-  function moveRect(event) {
+  function moveRect(event: MouseEvent) {
     rectangle.x -= 5;
     rectangle.y += 5;
   }
 
-  const twinkleStars = [];
+  const twinkleStars: { graphic: Graphics; speed: number; phase: number }[] = [];
   const starCount = 80;
   for (let i = 0; i < starCount; i += 1) {
     const twinkleStar = new Graphics()
@@ -157,7 +160,7 @@ import { initDevtools } from "@pixi/devtools";
     );
   }
 
-  function createRobinSprite(x, y) {
+  function createRobinSprite(x: number, y: number) {
     const robinSprite = new Sprite(birdsBundle.robin);
 
     robinSprite.eventMode = "static";
@@ -173,22 +176,22 @@ import { initDevtools } from "@pixi/devtools";
     treeContainer.addChild(robinSprite);
   }
 
-  let dragTarget = null;
+  let dragTarget: Sprite | null = null;
 
   app.stage.eventMode = "static";
   app.stage.hitArea = app.screen;
   app.stage.on("pointerup", onDragEnd);
   app.stage.on("pointerupoutside", onDragEnd);
 
-  function onDragMove(event) {
+  function onDragMove(event: FederatedPointerEvent) {
     if (dragTarget) {
-      dragTarget.parent.toLocal(event.global, null, dragTarget.position);
+      dragTarget.parent?.toLocal(event.global, undefined, dragTarget.position);
     }
   }
 
-  function onDragStart(event) {
+  function onDragStart(event: FederatedPointerEvent) {
     const target = event.currentTarget;
-    if (!target) return;
+    if (!(target instanceof Sprite)) return;
 
     target.alpha = 0.5;
     dragTarget = target;
@@ -258,7 +261,8 @@ import { initDevtools } from "@pixi/devtools";
     },
     meta: {
         image: 'https://i.imgur.com/rjR8BeV.png',
-        size: {w: 1750, h: 700}
+        size: {w: 1750, h: 700},
+        scale: "1",
     },
     animations: {
       //array of frames by name
@@ -271,7 +275,7 @@ import { initDevtools } from "@pixi/devtools";
 
   const spritesheet = new Spritesheet(
     texture,
-    atlasData
+    atlasData,
   );
 
   await spritesheet.parse();

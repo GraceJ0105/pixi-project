@@ -8,8 +8,12 @@ import {
   Container,
   Spritesheet,
   AnimatedSprite,
+  Texture,
 } from "pixi.js";
 import { initDevtools } from "@pixi/devtools";
+
+export type AnimalEnum = "robin" | "puffin";
+type Position = { x: number; y: number };
 
 (async () => {
   const app = new Application();
@@ -132,30 +136,42 @@ import { initDevtools } from "@pixi/devtools";
   // Use Vite's base URL so asset paths still work if the app is hosted under a subpath.
   const baseUrl = import.meta.env.BASE_URL;
 
-  async function createAnimatedSprite(birdName, position) {
-    const framePaths = [];
-    for(let i = 0; i < 5; i++) {
+  async function createAnimatedSprite(
+    birdName: AnimalEnum,
+    position: Position,
+  ): Promise<AnimatedSprite> {
+    const framePaths: string[] = [];
+    for (let i = 0; i < 5; i += 1) {
       framePaths.push(`${baseUrl}animations/sprites/${birdName}/${birdName}_fly-${i}.png`);
     }
-    const textures = await Assets.load(framePaths);
-    const frames = framePaths.map((p) => textures[p]);
+    const textures = (await Assets.load(framePaths)) as Record<string, Texture>;
+    const frames = framePaths.map((p) => textures[p]).filter(Boolean);
+
+    if (frames.length === 0) {
+      throw new Error(`No frames loaded for ${birdName}`);
+    }
+
     const animatedSprite = new AnimatedSprite(frames);
     animatedSprite.animationSpeed = 0.13;
     animatedSprite.loop = true;
     animatedSprite.anchor.set(0.5);
-    animatedSprite.position.set(position);
+    animatedSprite.position.set(position.x, position.y);
     animatedSprite.play();
     return animatedSprite;
   }
 
 
-const animatedRobin = await createAnimatedSprite("robin", app.screen.width / 2, app.screen.height / 2);
-const animatedPuffin = await createAnimatedSprite("puffin", app.screen.width / 4, app.screen.height / 2);
+  const animatedRobin = await createAnimatedSprite("robin", {
+    x: app.screen.width / 2,
+    y: app.screen.height / 2,
+  });
+  const animatedPuffin = await createAnimatedSprite("puffin", {
+    x: app.screen.width / 4,
+    y: app.screen.height / 2,
+  });
 
-
-app.stage.addChild(animatedRobin);
-
-app.stage.addChild(animatedPuffin);
+  app.stage.addChild(animatedRobin);
+  app.stage.addChild(animatedPuffin);
 
 
 
