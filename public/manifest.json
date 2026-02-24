@@ -31,17 +31,17 @@
       ]
     },
     {
-        "name": "scene",
-        "assets": [
-            {
-                "alias": "tree",
-                "src": "images/tree.png"
-            },
-            {
-                "alias": "beach",
-                "src": "images/beach.png"
-            }
-        ]
+      "name": "scene",
+      "assets": [
+        {
+          "alias": "tree",
+          "src": "images/tree.png"
+        },
+        {
+          "alias": "beach",
+          "src": "images/beach.png"
+        }
+      ]
     }
   ]
 }
