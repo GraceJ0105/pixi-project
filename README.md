@@ -11,7 +11,8 @@ A simple sandbox to explore:
 - Animating with the ticker  
 - Working with containers  
 - Handling basic interaction  
-- Understanding transparency and layering  
+- Understanding transparency and layering
+- Animating sprites
 
 This project is purely for learning and experimentation.
 
