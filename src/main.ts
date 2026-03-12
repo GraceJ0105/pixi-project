@@ -10,7 +10,6 @@ import {
 import { initDevtools } from "@pixi/devtools";
 
 export type AnimalEnum = "robin" | "puffin" | "penguin";
-type Position = { x: number; y: number };
 
 (async () => {
   const app = new Application();
