@@ -40,6 +40,10 @@
         {
           "alias": "beach",
           "src": "images/beach.png"
+        },
+        {
+          "alias": "arctic",
+          "src": "images/arctic.png"
         }
       ]
     }
