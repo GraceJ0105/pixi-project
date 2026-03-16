@@ -85,7 +85,8 @@ import { initDevtools } from "@pixi/devtools";
     rectangle.y += 5;
   }
 
-  const twinkleStars: { graphic: Graphics; speed: number; phase: number }[] = [];
+  const twinkleStars: { graphic: Graphics; speed: number; phase: number }[] =
+    [];
   const starCount = 80;
   for (let i = 0; i < starCount; i += 1) {
     const twinkleStar = new Graphics()
@@ -94,7 +95,7 @@ import { initDevtools } from "@pixi/devtools";
 
     twinkleStar.position.set(
       Math.random() * app.screen.width,
-      Math.random() * app.screen.height,
+      Math.random() * app.screen.height
     );
     twinkleStar.alpha = Math.random();
     app.stage.addChild(twinkleStar);
@@ -156,7 +157,7 @@ import { initDevtools } from "@pixi/devtools";
   for (let i = 0; i < 7; i++) {
     createRobinSprite(
       Math.floor(Math.random() * halfWidth()),
-      Math.floor(Math.random() * app.screen.height),
+      Math.floor(Math.random() * app.screen.height)
     );
   }
 
@@ -211,79 +212,75 @@ import { initDevtools } from "@pixi/devtools";
   plantSprite.position.set(300, 250);
   beachContainer.addChild(plantSprite);
 
-    const atlasData = {
+  const atlasData = {
     frames: {
       talk1: {
-        frame: {x: 0, y:0, w:350, h:350},
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 0, y: 0, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       talk2: {
-          frame: {x: 350, y:0, w:350, h:350},
-          sourceSize: {w: 350, h: 350},
-          spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 350, y: 0, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       talk3: {
-        frame: {x: 700, y:0, w:350, h:350 },
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 700, y: 0, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       talk4: {
-        frame: {x: 1050, y:0, w:350, h:350},
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 1050, y: 0, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       talk5: {
-        frame: {x: 1400, y:0, w:350, h:350},
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 1400, y: 0, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       walk1: {
-        frame: {x: 0, y:350, w:350, h:350},
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 0, y: 350, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       walk2: {
-        frame: {x: 350, y:350, w:350, h:350},
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 350, y: 350, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       walk3: {
-        frame: {x: 700, y:350, w:350, h:350 },
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
+        frame: { x: 700, y: 350, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
       },
       walk4: {
-        frame: {x: 1050, y:350, w:350, h:350},
-        sourceSize: {w: 350, h: 350},
-        spriteSourceSize: {x: 0, y: 0, w: 350, h: 350}
-      }
+        frame: { x: 1050, y: 350, w: 350, h: 350 },
+        sourceSize: { w: 350, h: 350 },
+        spriteSourceSize: { x: 0, y: 0, w: 350, h: 350 },
+      },
     },
     meta: {
-        image: 'https://i.imgur.com/rjR8BeV.png',
-        size: {w: 1750, h: 700},
-        scale: "1",
+      image: "https://i.imgur.com/rjR8BeV.png",
+      size: { w: 1750, h: 700 },
+      scale: "1",
     },
     animations: {
       //array of frames by name
-        talk: ['talk1', 'talk2', 'talk3', 'talk4', 'talk5'],
-        walk: ['walk1', 'walk2', 'walk3', 'walk4']
-    }
-  }
+      talk: ["talk1", "talk2", "talk3", "talk4", "talk5"],
+      walk: ["walk1", "walk2", "walk3", "walk4"],
+    },
+  };
 
   const texture = await Assets.load(atlasData.meta.image);
 
-  const spritesheet = new Spritesheet(
-    texture,
-    atlasData,
-  );
+  const spritesheet = new Spritesheet(texture, atlasData);
 
   await spritesheet.parse();
-  
+
   // For the walking animation set
   // spritesheet.animations.walk
-  const animatedSprite =
-  new AnimatedSprite(spritesheet.animations.talk);
+  const animatedSprite = new AnimatedSprite(spritesheet.animations.talk);
 
   app.stage.addChild(animatedSprite);
 

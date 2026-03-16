@@ -13,4 +13,3 @@ export const REFERENCE_WINDOW_HEIGHT = 1080;
 
 // Use Vite's base URL so asset paths still work if the app is hosted under a subpath.
 export const BASE_URL = import.meta.env.BASE_URL;
-

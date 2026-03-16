@@ -34,4 +34,3 @@ export async function setupHabitats(): Promise<Habitats> {
     arcticSprite,
   };
 }
-
