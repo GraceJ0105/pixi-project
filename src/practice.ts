@@ -80,7 +80,7 @@ import { initDevtools } from "@pixi/devtools";
   rectangle.cursor = "pointer";
   rectangle.on("mousedown", moveRect);
 
-  function moveRect(event: MouseEvent) {
+  function moveRect() {
     rectangle.x -= 5;
     rectangle.y += 5;
   }
