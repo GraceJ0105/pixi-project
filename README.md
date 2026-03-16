@@ -6,11 +6,11 @@ A small project for experimenting with PixiJS and learning how 2D rendering work
 
 A simple sandbox to explore:
 
-- Drawing shapes  
-- Loading sprites  
-- Animating with the ticker  
-- Working with containers  
-- Handling basic interaction  
+- Drawing shapes
+- Loading sprites
+- Animating with the ticker
+- Working with containers
+- Handling basic interaction
 - Understanding transparency and layering
 - Animating sprites
 
@@ -21,3 +21,4 @@ This project is purely for learning and experimentation.
 ```bash
 npm install
 npm run dev
+```

@@ -16,5 +16,5 @@ export default tseslint.config(
       sourceType: "module",
     },
     rules: {},
-  },
+  }
 );

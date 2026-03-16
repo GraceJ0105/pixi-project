@@ -4,24 +4,24 @@ import { TARGET_BACKGROUND_WIDTH, TARGET_BACKGROUND_HEIGHT } from "./constants";
 export function fitAsBackground(
   sprite: Sprite,
   containerWidth: number,
-  containerHeight: number,
+  containerHeight: number
 ): void {
   sprite.anchor.set(0.5);
   const baseWidth = sprite.texture.width || 1;
   const baseHeight = sprite.texture.height || 1;
-  
+
   // First, scale all sprites to the same target dimensions
   const scaleToTarget = Math.min(
     TARGET_BACKGROUND_WIDTH / baseWidth,
     TARGET_BACKGROUND_HEIGHT / baseHeight
   );
-  
+
   // Then scale to fit the container proportionally
   const scaleToContainer = Math.min(
     containerWidth / TARGET_BACKGROUND_WIDTH,
     containerHeight / TARGET_BACKGROUND_HEIGHT
   );
-  
+
   sprite.scale.set(scaleToTarget * scaleToContainer);
   sprite.position.set(containerWidth / 2, containerHeight / 2);
 }
@@ -33,7 +33,7 @@ export function layoutScene(
   arcticContainer: Container,
   treeSprite: Sprite,
   beachSprite: Sprite,
-  arcticSprite: Sprite,
+  arcticSprite: Sprite
 ): void {
   const width = app.screen.width;
   const height = app.screen.height;
@@ -50,4 +50,3 @@ export function layoutScene(
   fitAsBackground(beachSprite, thirdWidth, thirdHeight);
   fitAsBackground(arcticSprite, thirdWidth, thirdHeight);
 }
-

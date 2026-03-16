@@ -18,17 +18,28 @@ export interface GameState {
 
 export function createDragHandlers(
   app: Application,
-  gameState: GameState,
+  gameState: GameState
 ): {
   onDragMove: (event: FederatedPointerEvent) => void;
   onDragStart: (event: Event) => void;
   onDragEnd: (event: FederatedPointerEvent) => void;
 } {
-  const { spriteToBird, correctlyPlaced, correctHabitats, treeContainer, beachContainer, arcticContainer } = gameState;
+  const {
+    spriteToBird,
+    correctlyPlaced,
+    correctHabitats,
+    treeContainer,
+    beachContainer,
+    arcticContainer,
+  } = gameState;
 
   function onDragMove(event: FederatedPointerEvent): void {
     if (gameState.dragTarget) {
-      gameState.dragTarget.parent?.toLocal(event.global, undefined, gameState.dragTarget.position);
+      gameState.dragTarget.parent?.toLocal(
+        event.global,
+        undefined,
+        gameState.dragTarget.position
+      );
     }
   }
 
@@ -48,35 +59,59 @@ export function createDragHandlers(
 
   function onDragEnd(event: FederatedPointerEvent): void {
     if (!gameState.dragTarget) return;
-    
+
     app.stage.off("pointermove", onDragMove);
     gameState.dragTarget.alpha = 1;
-    
+
     // Check if sprite was dropped in the correct habitat
     const birdType = spriteToBird.get(gameState.dragTarget);
     if (!birdType) {
       gameState.dragTarget = null;
       return;
     }
-    
+
     const correctHabitat = correctHabitats.get(birdType);
     if (!correctHabitat) {
       gameState.dragTarget = null;
       return;
     }
-    
+
     // Convert global coordinates to check which container the sprite is over
     const globalPos = event.global;
     const thirdWidth = app.screen.width / 3;
     const thirdHeight = app.screen.height / 3; // middle third of the screen
-    
+
     // Check each container's bounds (containers are in the middle third vertically)
     const containers = [
-      { container: treeContainer, bounds: { x: 0, y: thirdHeight, width: thirdWidth, height: thirdHeight } },
-      { container: beachContainer, bounds: { x: thirdWidth, y: thirdHeight, width: thirdWidth, height: thirdHeight } },
-      { container: arcticContainer, bounds: { x: thirdWidth * 2, y: thirdHeight, width: thirdWidth, height: thirdHeight } },
+      {
+        container: treeContainer,
+        bounds: {
+          x: 0,
+          y: thirdHeight,
+          width: thirdWidth,
+          height: thirdHeight,
+        },
+      },
+      {
+        container: beachContainer,
+        bounds: {
+          x: thirdWidth,
+          y: thirdHeight,
+          width: thirdWidth,
+          height: thirdHeight,
+        },
+      },
+      {
+        container: arcticContainer,
+        bounds: {
+          x: thirdWidth * 2,
+          y: thirdHeight,
+          width: thirdWidth,
+          height: thirdHeight,
+        },
+      },
     ];
-    
+
     for (const { container, bounds } of containers) {
       if (
         globalPos.x >= bounds.x &&
@@ -89,14 +124,14 @@ export function createDragHandlers(
           // Correct habitat! Start/resume animation
           correctlyPlaced.add(gameState.dragTarget);
           gameState.dragTarget.play();
-          
+
           // Move sprite to the container
           const currentParent = gameState.dragTarget.parent;
           if (currentParent) {
             currentParent.removeChild(gameState.dragTarget);
           }
           container.addChild(gameState.dragTarget);
-          
+
           // Convert to container's local coordinates
           const localPos = container.toLocal(globalPos);
           gameState.dragTarget.position.set(localPos.x, localPos.y);
@@ -104,14 +139,14 @@ export function createDragHandlers(
           // Wrong habitat - stop animation and remove from correctly placed set
           gameState.dragTarget.stop();
           correctlyPlaced.delete(gameState.dragTarget);
-          
+
           // Move sprite to the wrong container (or keep on stage)
           const currentParent = gameState.dragTarget.parent;
           if (currentParent) {
             currentParent.removeChild(gameState.dragTarget);
           }
           container.addChild(gameState.dragTarget);
-          
+
           // Convert to container's local coordinates
           const localPos = container.toLocal(globalPos);
           gameState.dragTarget.position.set(localPos.x, localPos.y);
@@ -119,10 +154,9 @@ export function createDragHandlers(
         break;
       }
     }
-    
+
     gameState.dragTarget = null;
   }
 
   return { onDragMove, onDragStart, onDragEnd };
 }
-

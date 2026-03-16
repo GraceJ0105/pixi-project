@@ -61,7 +61,7 @@ import { createDragHandlers, type GameState } from "./gameLogic";
       habitats.arcticContainer,
       habitats.treeSprite,
       habitats.beachSprite,
-      habitats.arcticSprite,
+      habitats.arcticSprite
     );
   };
 
@@ -69,9 +69,24 @@ import { createDragHandlers, type GameState } from "./gameLogic";
   app.renderer.on("resize", doLayout);
 
   // Create animated sprites
-  const animatedRobin = await createAnimatedSprite("robin", 750, 100, onDragStart);
-  const animatedPuffin = await createAnimatedSprite("puffin", 250, 100, onDragStart);
-  const animatedPenguin = await createAnimatedSprite("penguin", 500, 100, onDragStart);
+  const animatedRobin = await createAnimatedSprite(
+    "robin",
+    750,
+    100,
+    onDragStart
+  );
+  const animatedPuffin = await createAnimatedSprite(
+    "puffin",
+    250,
+    100,
+    onDragStart
+  );
+  const animatedPenguin = await createAnimatedSprite(
+    "penguin",
+    500,
+    100,
+    onDragStart
+  );
 
   spriteToBird.set(animatedRobin, "robin");
   spriteToBird.set(animatedPuffin, "puffin");
