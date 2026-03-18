@@ -68,23 +68,29 @@ import { createDragHandlers, type GameState } from "./gameLogic";
   doLayout();
   app.renderer.on("resize", doLayout);
 
+  // Place the initial sprites using screen-relative positions so they
+  // remain visible on small mobile viewports.
+  const thirdWidth = app.screen.width / 3;
+  const thirdHeight = app.screen.height / 3;
+  const initialBirdY = thirdHeight / 2;
+
   // Create animated sprites
   const animatedRobin = await createAnimatedSprite(
     "robin",
-    750,
-    100,
+    thirdWidth * 2.5,
+    initialBirdY,
     onDragStart
   );
   const animatedPuffin = await createAnimatedSprite(
     "puffin",
-    250,
-    100,
+    thirdWidth / 2,
+    initialBirdY,
     onDragStart
   );
   const animatedPenguin = await createAnimatedSprite(
     "penguin",
-    500,
-    100,
+    thirdWidth * 1.5,
+    initialBirdY,
     onDragStart
   );
 
